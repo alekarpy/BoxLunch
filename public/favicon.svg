@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded corners -->
+  <rect width="32" height="32" rx="8" fill="url(#bgGrad)" />
+  <!-- Crossed Fork and Knife Icon -->
+  <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(4, 4)">
+    <!-- Knife (diagonal line + blade) -->
+    <path d="M2 22 L22 2" />
+    <!-- Blade shape -->
+    <path d="M15 2 C17 1.5, 20.5 3.5, 22 5 L17 10 Z" fill="#ffffff" />
+    
+    <!-- Fork (diagonal handle + prongs) -->
+    <path d="M22 22 L11 11" />
+    <!-- Fork base and prongs -->
+    <path d="M11 11 C9.5 9.5, 6 6, 2 2" />
+    <path d="M2 2 L6 6 C7 7, 7.5 5.5, 5.5 3.5 C4.5 2.5, 2.5 1.5, 2.5 1.5" />
+    <path d="M1.5 2.5 C2.5 4.5, 3.5 6.5, 5.5 5.5 C7.5 4.5, 7 3, 6 2" />
+  </g>
+</svg>
