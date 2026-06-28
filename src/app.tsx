@@ -15,6 +15,12 @@ import NotFoundPage from '@/pages/not-found';
 import UsuariosPage from '@/pages/usuarios';
 
 function App() {
+  // Normalize pathname to always include the /boxlunch basename
+  if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/boxlunch')) {
+    const targetPath = '/boxlunch' + (window.location.pathname === '/' ? '/' : window.location.pathname);
+    window.history.replaceState(null, '', targetPath);
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary resetQueryCache>
