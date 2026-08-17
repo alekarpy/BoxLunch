@@ -27,7 +27,7 @@ export function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 p-1 pr-3 rounded-full hover:bg-accent/50 transition-colors border border-transparent hover:border-border/50">
+        <button className="flex items-center gap-2 p-1 md:pr-3 rounded-full hover:bg-accent/50 transition-colors border border-transparent hover:border-border/50">
           <UserPhotoAvatar
             user={{
               nombreparamostrar: user.displayName,

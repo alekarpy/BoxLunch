@@ -194,19 +194,19 @@ export default function HomePage() {
           <div className="absolute top-2 right-0 w-36 h-36 bg-primary/[0.03] rounded-full blur-3xl translate-x-1/2" />
         </div>
 
-        <div className="relative w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="relative w-full max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3"
+              className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0"
             >
-              <div className="p-2 bg-gradient-to-br from-primary to-accent rounded-xl shadow-lg">
-                <UtensilsCrossed className="h-6 w-6 text-primary-foreground" />
+              <div className="p-1.5 sm:p-2 bg-gradient-to-br from-primary to-accent rounded-lg sm:rounded-xl shadow-lg shrink-0">
+                <UtensilsCrossed className="h-4 w-4 sm:h-6 sm:w-6 text-primary-foreground" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-                  BoxLunch | Demo App
+              <div className="min-w-0">
+                <h1 className="text-sm sm:text-xl font-bold tracking-tight whitespace-nowrap" style={{ fontFamily: 'var(--font-display)' }}>
+                  BoxLunch<span className="hidden sm:inline"> | Demo App</span>
                 </h1>
                 <p className="text-xs text-muted-foreground -mt-0.5 hidden sm:block">
                   Sistema de Solicitudes
@@ -217,13 +217,13 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-1.5 sm:gap-2 shrink-0"
             >
               {/* Developer sees user management */}
               {isDeveloper && (
                 <Link
                   to="/usuarios"
-                  className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-border/50 bg-background/50 hover:bg-accent/20 hover:border-accent/50 transition-all duration-200"
+                  className="inline-flex items-center justify-center h-8 w-8 sm:h-9 sm:w-9 rounded-lg border border-border/50 bg-background/50 hover:bg-accent/20 hover:border-accent/50 transition-all duration-200 shrink-0"
                   title="Gestión de Usuarios"
                 >
                   <Users className="h-4 w-4 text-muted-foreground" />
@@ -232,7 +232,7 @@ export default function HomePage() {
               {/* TEMP: Also show FormularioPedidos for operations when the flag is active */}
               {(isAdmin || isDeveloper || (ENABLE_NEW_ORDER_FOR_OPERATIVO && isOperativo)) && <FormularioPedidos onOrderCreated={handleOrderCreated} />}
               <ThemeSettings />
-              <div className="ml-1 pl-2 border-l border-border/40">
+              <div className="ml-0.5 sm:ml-1 pl-1 sm:pl-2 border-l border-border/40 shrink-0">
                 <UserMenu />
               </div>
             </motion.div>
