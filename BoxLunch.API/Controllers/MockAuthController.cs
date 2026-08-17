@@ -61,23 +61,7 @@ public class MockAuthController(IConfiguration config) : ControllerBase
             new ClaimsPrincipal(claimsIdentity), 
             authProperties);
 
-        // Redirigir al frontend usando FrontendOrigin configurado
-        var frontendOrigin = config["FrontendOrigin"];
-        string redirectUrl;
-        if (!string.IsNullOrEmpty(frontendOrigin))
-        {
-            frontendOrigin = frontendOrigin.TrimEnd('/');
-            redirectUrl = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" 
-                ? $"{frontendOrigin}/" 
-                : $"{frontendOrigin}/boxlunch/";
-        }
-        else
-        {
-            redirectUrl = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" 
-                ? "http://localhost:5173/" 
-                : "/boxlunch/";
-        }
-
+        string redirectUrl = GetRedirectUrl();
         return Redirect(redirectUrl);
     }
 
@@ -85,23 +69,41 @@ public class MockAuthController(IConfiguration config) : ControllerBase
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        
+        string redirectUrl = GetRedirectUrl();
+        return Redirect(redirectUrl);
+    }
+
+    private string GetRedirectUrl()
+    {
         var frontendOrigin = config["FrontendOrigin"];
-        string redirectUrl;
         if (!string.IsNullOrEmpty(frontendOrigin))
         {
             frontendOrigin = frontendOrigin.TrimEnd('/');
-            redirectUrl = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" 
+            return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" 
                 ? $"{frontendOrigin}/" 
                 : $"{frontendOrigin}/boxlunch/";
         }
-        else
+
+        var referer = Request.Headers["Referer"].ToString();
+        if (!string.IsNullOrEmpty(referer) && Uri.TryCreate(referer, UriKind.Absolute, out var refererUri))
         {
-            redirectUrl = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" 
-                ? "http://localhost:5173/" 
-                : "/boxlunch/";
+            var origin = $"{refererUri.Scheme}://{refererUri.Authority}";
+            return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" 
+                ? $"{origin}/" 
+                : $"{origin}/boxlunch/";
         }
 
-        return Redirect(redirectUrl);
+        if (Request.Headers.TryGetValue("Host", out var hostHeader) && !string.IsNullOrEmpty(hostHeader))
+        {
+            var scheme = Request.Scheme;
+            var origin = $"{scheme}://{hostHeader}";
+            return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" 
+                ? $"{origin}/" 
+                : $"{origin}/boxlunch/";
+        }
+
+        return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" 
+            ? "http://localhost:5173/" 
+            : "/boxlunch/";
     }
 }

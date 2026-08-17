@@ -1,7 +1,7 @@
 import type { Empleado } from '../models/empleado-model';
 import type { IOperationOptions } from '../models/common-models';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 export class EmpleadoService {
   static async create(record: Omit<Empleado, 'id'>): Promise<Empleado> {

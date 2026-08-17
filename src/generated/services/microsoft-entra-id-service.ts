@@ -1,7 +1,7 @@
 import type { MicrosoftEntraID } from '../models/microsoft-entra-id-model';
 
 // URL base del API en C#
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 /**
  * Mapea el DTO del backend C# al modelo MicrosoftEntraID del frontend.

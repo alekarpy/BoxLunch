@@ -13,7 +13,10 @@ const Orb = ({ className, delay = 0 }: { className: string; delay?: number }) =>
 );
 
 export function PantallaLogin() {
-  const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:5050/api';
+  const getApiUrl = () => {
+    if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+    return '/api';
+  };
 
   useEffect(() => {
     // Capture error messages from URL (e.g. redirected by backend on AuthFailed)
@@ -30,6 +33,7 @@ export function PantallaLogin() {
   }, []);
 
   const handleLoginRedirect = (role: string) => {
+    const apiUrl = getApiUrl();
     window.location.href = `${apiUrl}/auth/mock-login?role=${role}`;
   };
 

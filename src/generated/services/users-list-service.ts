@@ -1,7 +1,7 @@
 import type { UsersList } from '../models/users-list-model';
 import type { IOperationOptions } from '../models/common-models';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 export class UsersListService {
   static async create(record: Omit<UsersList, 'id'>): Promise<UsersList> {

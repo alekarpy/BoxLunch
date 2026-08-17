@@ -1,7 +1,7 @@
 import type { AsignacionesDeRolDeUsuario } from '../models/asignaciones-de-rol-de-usuario-model';
 import type { IOperationOptions } from '../models/common-models';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 export class AsignacionesDeRolDeUsuarioService {
   static async create(record: Omit<AsignacionesDeRolDeUsuario, 'id'>): Promise<AsignacionesDeRolDeUsuario> {

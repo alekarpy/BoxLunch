@@ -60,7 +60,7 @@ export function UserMenu() {
         <DropdownMenuItem 
           onClick={() => {
             // Official logout via server to clear cookies and Microsoft session
-            const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
+            const apiBaseUrl = import.meta.env.VITE_API_URL || '/api';
             window.location.href = `${apiBaseUrl}/auth/logout`;
           }}
           className="text-destructive focus:text-destructive"

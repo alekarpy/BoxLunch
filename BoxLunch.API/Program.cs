@@ -86,14 +86,13 @@ builder.Services.AddAuthentication(options =>
 });
 
 // CORS: permitir peticiones desde el frontend React (producción y local) con Credenciales
-// FrontendOrigin se configura como variable de entorno en Railway o en appsettings.json local
 var frontendOrigin = builder.Configuration["FrontendOrigin"] ?? "http://localhost:5173";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("VibeFrontend", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173", "http://localhost:5174", frontendOrigin)
+            .SetIsOriginAllowed(_ => true)
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials(); // Crucial para permitir cookies entre diferentes orígenes

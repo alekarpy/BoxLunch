@@ -33,7 +33,7 @@ async function getCurrentUser(): Promise<AppUser | null> {
   }
 
   // 2. Production: query user profile from backend
-  const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:5050/api';
+  const apiUrl = import.meta.env.VITE_API_URL ?? '/api';
   try {
     const res = await fetch(`${apiUrl}/auth/me`, { credentials: 'include' });
     if (res.ok) {
