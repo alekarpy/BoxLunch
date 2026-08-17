@@ -317,8 +317,9 @@ export default function UsuariosPage() {
                 <div className="p-1.5 bg-gradient-to-br from-primary to-accent rounded-lg">
                   <Users className="h-5 w-5 text-primary-foreground" />
                 </div>
-                <h1 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-                  Asignaciones de Rol
+                <h1 className="text-base sm:text-lg font-bold whitespace-nowrap" style={{ fontFamily: 'var(--font-display)' }}>
+                  <span className="lg:hidden">Roles</span>
+                  <span className="hidden lg:inline">Asignaciones de Rol</span>
                 </h1>
               </div>
             </div>
@@ -502,32 +503,32 @@ export default function UsuariosPage() {
             <Table className="table-fixed w-full">
               <TableHeader>
                 <TableRow className="bg-muted/30">
-                  <TableHead className="w-[30%]">
+                  <TableHead className="w-[50%] lg:w-[28%]">
                     <div className="flex items-center gap-2">
                       <User className="h-4 w-4 text-primary" />
                       Usuario
                     </div>
                   </TableHead>
-                  <TableHead className="hidden sm:table-cell w-[25%]">
+                  <TableHead className="hidden lg:table-cell lg:w-[25%]">
                     <div className="flex items-center gap-2">
                       <Mail className="h-4 w-4 text-primary" />
                       Correo electrónico
                     </div>
                   </TableHead>
-                  <TableHead className="w-[15%]">
+                  <TableHead className="w-[35%] lg:w-[18%]">
                     <div className="flex items-center gap-2">
                       <Shield className="h-4 w-4 text-primary" />
                       Rol
                     </div>
                   </TableHead>
-                  <TableHead className="hidden md:table-cell w-[12%]">
+                  <TableHead className="hidden lg:table-cell lg:w-[14%]">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-primary" />
                       Fecha
                     </div>
                   </TableHead>
-                  <TableHead className="w-[10%]">Estado</TableHead>
-                  <TableHead className="w-[8%] text-center"></TableHead>
+                  <TableHead className="hidden lg:table-cell lg:w-[15%]">Estado</TableHead>
+                  <TableHead className="w-[15%] lg:w-[8%] text-center"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -551,36 +552,36 @@ export default function UsuariosPage() {
                               employeeEmail={asignacion.correoelectrnico} 
                               className="h-9 w-9 shadow-md"
                             />
-                            <div>
-                              <p className="font-medium text-foreground">{asignacion.asignacionesderoldeusuarionombre}</p>
-                              <p className="text-xs text-muted-foreground sm:hidden truncate">{asignacion.correoelectrnico}</p>
+                            <div className="min-w-0">
+                              <p className="font-medium text-foreground truncate">{asignacion.asignacionesderoldeusuarionombre}</p>
+                              <p className="text-xs text-muted-foreground lg:hidden truncate">{asignacion.correoelectrnico}</p>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">
+                        <TableCell className="hidden lg:table-cell">
                           <span className="text-sm text-muted-foreground truncate block">{asignacion.correoelectrnico}</span>
                         </TableCell>
                         <TableCell>
                           {roleDisplay.color === 'developer' ? (
                             <Badge variant="outline" className="gap-1 border-emerald-500/50 text-emerald-700 bg-emerald-50 dark:bg-emerald-950/30 dark:text-emerald-400">
-                              <RoleIcon className="h-3 w-3" />
-                              <span className="hidden sm:inline">{roleDisplay.label}</span>
+                              <RoleIcon className="h-3 w-3 shrink-0" />
+                              <span className="truncate">{roleDisplay.label}</span>
                             </Badge>
                           ) : (
                             <Badge variant={roleDisplay.variant} className="gap-1">
-                              <RoleIcon className="h-3 w-3" />
-                              <span className="hidden sm:inline">{roleDisplay.label}</span>
+                              <RoleIcon className="h-3 w-3 shrink-0" />
+                              <span className="truncate">{roleDisplay.label}</span>
                             </Badge>
                           )}
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden lg:table-cell">
                           <span className="text-xs text-muted-foreground">
                             {asignacion.fechadeasignacin 
                               ? format(new Date(asignacion.fechadeasignacin), 'dd MMM yyyy', { locale: es })
                               : '-'}
                           </span>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="hidden lg:table-cell">
                           {asignacion.estadoactivo ? (
                             <Badge variant="outline" className="gap-1 border-emerald-500/50 text-emerald-700 bg-emerald-50 dark:bg-emerald-950/30 dark:text-emerald-400">
                               <CheckCircle className="h-3 w-3" />
